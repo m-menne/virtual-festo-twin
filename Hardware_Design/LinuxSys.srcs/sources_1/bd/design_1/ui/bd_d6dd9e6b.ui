@@ -1,0 +1,70 @@
+{
+   guistr: "# # String gsaved with Nlview 6.6.8  2016-12-21 bk=1.3817 VDI=40 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port Debug_SYS_Rst -pg 1 -y 280 -defaultsOSRD
+preplace port pmod_ja -pg 1 -y 840 -defaultsOSRD
+preplace port pmod_jb -pg 1 -y 970 -defaultsOSRD
+preplace port ARESETN -pg 1 -y 440 -defaultsOSRD
+preplace port pmod_jc -pg 1 -y 1130 -defaultsOSRD
+preplace port Clk -pg 1 -y 250 -defaultsOSRD
+preplace port pmod_jd -pg 1 -y 1260 -defaultsOSRD
+preplace port S00_ARESETN -pg 1 -y 460 -defaultsOSRD
+preplace port M05_AXI -pg 1 -y 190 -defaultsOSRD
+preplace port Reset -pg 1 -y 270 -defaultsOSRD
+preplace port SYS_Rst -pg 1 -y 160 -defaultsOSRD
+preplace portBus axi_max11046_0_SHDN -pg 1 -y 390 -defaultsOSRD
+preplace portBus axi_max11046_0_DB16_CR4 -pg 1 -y 140 -defaultsOSRD
+preplace portBus axi_max11046_0_CONVST -pg 1 -y 430 -defaultsOSRD
+preplace portBus axi_max11046_0_EOC -pg 1 -y 340 -defaultsOSRD
+preplace portBus axi_max11046_0_WR -pg 1 -y 540 -defaultsOSRD
+preplace portBus axi_max11046_0_RD -pg 1 -y 730 -defaultsOSRD
+preplace portBus axi_max11046_0_CS -pg 1 -y 690 -defaultsOSRD
+preplace inst axi_max11046_0_DB16_CR4 -pg 1 -lvl 3 -y 70 -defaultsOSRD
+preplace inst axi_max11046_0_WR_EOC -pg 1 -lvl 3 -y 540 -defaultsOSRD
+preplace inst axi_gpio_pmod_ja -pg 1 -lvl 3 -y 840 -defaultsOSRD
+preplace inst microblaze_0_axi_periph -pg 1 -lvl 2 -y 500 -defaultsOSRD
+preplace inst axi_timer_0 -pg 1 -lvl 3 -y 1400 -defaultsOSRD
+preplace inst axi_gpio_pmod_jb -pg 1 -lvl 3 -y 970 -defaultsOSRD
+preplace inst axi_max11046_0_CS_RD -pg 1 -lvl 3 -y 700 -defaultsOSRD
+preplace inst axi_gpio_pmod_jc -pg 1 -lvl 3 -y 1110 -defaultsOSRD
+preplace inst axi_gpio_pmod_jd -pg 1 -lvl 3 -y 1240 -defaultsOSRD
+preplace inst mdm_1 -pg 1 -lvl 3 -y 250 -defaultsOSRD
+preplace inst axi_max11046_0_SHDN_CONVST -pg 1 -lvl 3 -y 390 -defaultsOSRD
+preplace inst microblaze_0 -pg 1 -lvl 1 -y 240 -defaultsOSRD
+preplace inst microblaze_0_local_memory -pg 1 -lvl 2 -y 120 -defaultsOSRD
+preplace netloc Conn1 1 3 1 1440
+preplace netloc Conn2 1 3 1 1430J
+preplace netloc microblaze_0_axi_periph_M08_AXI 1 2 1 1060
+preplace netloc microblaze_0_axi_periph_M04_AXI 1 2 1 1110
+preplace netloc microblaze_0_mdm_axi 1 2 1 1080
+preplace netloc gpio2_io_i_1 1 0 4 -70J -10 NJ -10 NJ -10 1440
+preplace netloc SYS_Rst_1 1 0 2 -60J 150 NJ
+preplace netloc rst_ps7_0_100M_mb_reset 1 0 1 NJ
+preplace netloc Conn3 1 3 1 NJ
+preplace netloc Conn4 1 3 1 NJ
+preplace netloc microblaze_0_ILMB 1 1 1 700
+preplace netloc axi_max11046_0_SHDN_CONVST_gpio2_io_o 1 3 1 1450J
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 0 3 NJ 460 690 30 1070
+preplace netloc microblaze_0_Clk 1 0 3 -50 140 730 20 1090
+preplace netloc microblaze_0_axi_periph_M06_AXI 1 2 1 1100
+preplace netloc microblaze_0_axi_periph_M03_AXI 1 2 1 1120
+preplace netloc axi_max11046_0_CS_RD_gpio_io_o 1 3 1 NJ
+preplace netloc gpio_io_i_1 1 0 4 -80J -30 NJ -30 NJ -30 1430
+preplace netloc microblaze_0_axi_periph_M10_AXI 1 2 1 1040
+preplace netloc microblaze_0_axi_periph_M05_AXI 1 2 2 1100J 180 1450J
+preplace netloc microblaze_0_axi_dp 1 1 1 710
+preplace netloc microblaze_0_axi_periph_M01_AXI 1 2 1 1040
+preplace netloc axi_max11046_0_SHDN_CONVST_gpio_io_o 1 3 1 1450J
+preplace netloc microblaze_0_axi_periph_M07_AXI 1 2 1 1080
+preplace netloc microblaze_0_axi_periph_M02_AXI 1 2 1 1120
+preplace netloc axi_max11046_0_WR_EOC_gpio_io_o 1 3 1 1450J
+preplace netloc microblaze_0_debug 1 0 4 -30J 0 NJ 0 NJ 0 1420
+preplace netloc axi_max11046_0_CS_RD_gpio2_io_o 1 3 1 NJ
+preplace netloc mdm_1_debug_sys_rst 1 3 1 1450J
+preplace netloc microblaze_0_axi_periph_M09_AXI 1 2 1 1050
+preplace netloc microblaze_0_DLMB 1 1 1 710
+preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 0 2 -40J 160 720J
+levelinfo -pg 1 -100 450 890 1270 1470 -top -80 -bot 1500
+",
+}
+0

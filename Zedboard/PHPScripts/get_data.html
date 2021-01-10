@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Data Festo Workstation</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link href="stylesheet.css" rel="stylesheet">
+ 
+  <script type="text/javascript">
+
+	function update_buttons_ac(elem, value) {
+		if(value == 0){
+			document.getElementById(elem).style.background = "grey";
+			document.getElementById(elem).style.border = "grey";
+			document.getElementById(elem).style.color = "white";
+			document.getElementById(elem).textContent = "Not Activated";
+ 		}
+		else {
+                        document.getElementById(elem).style.background = "green";
+			document.getElementById(elem).style.border = "green";
+                        document.getElementById(elem).style.color = "white";
+			document.getElementById(elem).textContent = "Activated";
+                }
+	}
+
+	function update_buttons_on_off(elem, value) {
+                if(value == 0){
+                        document.getElementById(elem).style.background = "grey";
+                        document.getElementById(elem).style.border = "grey";
+                        document.getElementById(elem).style.color = "white";
+                        document.getElementById(elem).textContent = "Off";
+                }
+                else {
+                        document.getElementById(elem).style.background = "green";
+                        document.getElementById(elem).style.border = "green";
+                        document.getElementById(elem).style.color = "white";
+                        document.getElementById(elem).textContent = "On";
+                }
+        }
+
+	function update_buttons_open_closed(elem, value) {
+                if(value == 0){
+                        document.getElementById(elem).style.background = "grey";
+                        document.getElementById(elem).style.border = "grey";
+                        document.getElementById(elem).style.color = "white";
+                        document.getElementById(elem).textContent = "Closed";
+                }
+                else {
+                        document.getElementById(elem).style.background = "green";
+                        document.getElementById(elem).style.border = "green";
+                        document.getElementById(elem).style.color = "white";
+                        document.getElementById(elem).textContent = "Open";
+                }
+        }
+
+	function update_buttons_war_error(elem, value) {
+                if(value == 0){
+                        document.getElementById(elem).style.background = "grey";
+                        document.getElementById(elem).style.border = "grey";
+                        document.getElementById(elem).style.color = "white";
+                        document.getElementById(elem).textContent = "Ok";
+                }
+                else {
+                        document.getElementById(elem).style.background = "red";
+                        document.getElementById(elem).style.border = "red";
+                        document.getElementById(elem).style.color = "white";
+                        document.getElementById(elem).textContent = value;
+                }
+        }
+
+	function update_buttons_rate(elem, value) {
+        	document.getElementById(elem).style.background = "grey";
+                document.getElementById(elem).style.border = "grey";
+                document.getElementById(elem).style.color = "white";
+        	
+		if(elem == "pump_mode"){
+			if(value == 0)document.getElementById(elem).textContent = "Digital";
+			else document.getElementById(elem).textContent = "Analog";
+		} else {
+			if(elem == "waterflow") document.getElementById(elem).textContent = value.toFixed(2) + ' l/min';
+               		if(elem == "pressure") document.getElementById(elem).textContent = value.toFixed(2) + ' mbar';
+			if(elem == "temperature") document.getElementById(elem).textContent = value.toFixed(2) + ' Celsius';
+			if(elem == "saturation") {
+				value = value * 100;
+				document.getElementById(elem).textContent = value.toFixed(2) + ' %';
+			}
+			if(elem == "pump_power") {
+                                value = value * 100;
+                                document.getElementById(elem).textContent = value.toFixed(2) + ' %';
+                        }
+			if(elem == "lower_valve_flowrate") {
+                                value = value * 100;
+                                document.getElementById(elem).textContent = value.toFixed(2) + ' %';
+                        }
+             	}
+        }
+
+
+	function update_bars(value) {
+                var elem = document.getElementById("bar_left_tank");
+                var width = value*100;
+		width = width.toFixed(4);
+                elem.style.width = width + '%';
+                elem.innerHTML = width*1 + '%';
+                var elem = document.getElementById("bar_right_tank");
+                var width = 100-(value*100);
+		width = width.toFixed(4);
+                elem.style.width = width + '%';
+                elem.innerHTML = width*1 + '%';
+	}
+
+	function update_saturation(value) {
+                var elem = document.getElementById("saturation");
+                var width = value*100;
+                width = width.toFixed(4);
+                elem.style.width = width + '%';
+                elem.innerHTML = width*1 + '%';
+	}
+
+
+	function Refresh () {
+		const Http = new XMLHttpRequest();
+		const url='/get_data.php';
+		Http.open("GET", url);
+		Http.send();
+	
+		Http.onreadystatechange=function(){
+			if(this.readyState==4 && this.status==200){
+				
+				// Parse data string
+				var unparsedData = Http.responseText;
+				var parsedData = unparsedData.split(',');
+				
+				// Update bars
+				update_bars(parseFloat(parsedData[5].split(':')[1].split('}')[0]).toFixed(4));
+				
+				// Update activated/not activated buttons
+				update_buttons_ac("overflow",parseInt(parsedData[0].split(':')[1].split('}')[0]));
+				update_buttons_ac("float_switch",parseInt(parsedData[1].split(':')[1].split('}')[0]));
+				update_buttons_ac("min_switch",parseInt(parsedData[2].split(':')[1].split('}')[0]));
+				update_buttons_ac("max_switch",parseInt(parsedData[3].split(':')[1].split('}')[0]));
+			
+				// Update on/off buttons
+				update_buttons_on_off("heater",parseInt(parsedData[10].split(':')[1].split('}')[0]));
+				update_buttons_on_off("pump_status",parseInt(parsedData[12].split(':')[1].split('}')[0]));
+				update_buttons_on_off("filter",parseInt(parsedData[19].split(':')[1].split('}')[0]));
+				update_buttons_on_off("inflow",parseInt(parsedData[20].split(':')[1].split('}')[0]));
+				
+				// Update open/closed buttons
+				update_buttons_open_closed("upper_valve",parseInt(parsedData[4].split(':')[1].split('}')[0]));
+				update_buttons_open_closed("lower_valve_status",parseInt(parsedData[13].split(':')[1].split('}')[0]));
+
+				// Update warning/error buttons
+				update_buttons_war_error("warning",parseInt(parsedData[17].split(':')[1].split('}')[0]));
+				update_buttons_war_error("error",parseInt(parsedData[16].split(':')[1].split('}')[0]));
+
+				// Update rate buttons
+				update_buttons_rate("waterflow",parseFloat(parsedData[7].split(':')[1].split('}')[0]));
+				update_buttons_rate("pressure",parseFloat(parsedData[8].split(':')[1].split('}')[0]));
+				update_buttons_rate("temperature",parseFloat(parsedData[9].split(':')[1].split('}')[0]));
+				update_saturation(parseFloat(parsedData[18].split(':')[1].split('}')[0]));
+				update_buttons_rate("pump_mode",parseFloat(parsedData[11].split(':')[1].split('}')[0]));
+				update_buttons_rate("pump_power",parseFloat(parsedData[14].split(':')[1].split('}')[0]));
+				update_buttons_rate("lower_valve_flowrate",parseFloat(parsedData[15].split(':')[1].split('}')[0]));
+			}
+		}
+		window.setTimeout("Refresh()", 500);
+	};
+	
+	window.onload = Refresh();
+
+  </script> 
+ </head>
+ <body>
+  <div id="main">
+	<h1>Data of the Festo Workstation</h1>
+   	
+	<div class="part_left">
+	<hr>
+	<div class="button_align">
+	<h2>Sensors</h2>
+	
+	Left Tank Waterlevel:
+	<div class="myProgress">
+       		 <div class="myBar" id="bar_left_tank">10%</div>
+       	</div>
+	
+	Right Tank Waterlevel:
+	<div class="myProgress">
+                 <div class="myBar" id="bar_right_tank">10%</div>
+        </div>
+	<br>
+	
+	<div>
+		Overflow Sensor: 
+		<button type="button" class="btn btn_left" id="overflow">Activated</button>
+	</div><br>
+	<div>
+		Float Switch:
+		<button type="button" class="btn btn_left" id="float_switch">Activated</button>
+	</div><br>
+	<div>
+		Minimum Switch:
+		<button type="button" class="btn btn_left" id="min_switch">Activated</button>
+	</div><br>
+	<div>
+		Maximum Switch:
+		<button type="button" class="btn btn_left" id="max_switch">Activated</button>
+	</div><br>
+
+	<div>
+                Waterflow:
+                <button type="button" class="btn btn_left" id="waterflow">Activated</button>
+        </div><br>
+        <div>
+                Water Pressure:
+                <button type="button" class="btn btn_left" id="pressure">Activated</button>
+        </div><br>
+        <div>
+                Temperature:
+                <button type="button" class="btn btn_left" id="temperature">Activated</button>
+        </div><br>
+
+	<div>
+                Saturation:
+		<div class="myProgress" id="saturation_prog">
+                 	<div class="myBar" id="saturation">10%</div>
+	        </div>
+        </div><br>
+	</div>
+	</div>
+	
+	<div class="part_right">
+	<hr>
+	
+	<h2>Actuators</h2>
+	<div>
+		Upper Valve:
+		<button type="button" class="btn btn_right" id="upper_valve">Activated</button>
+	</div><br>
+	
+	<div>
+		Heater Status:
+		<button type="button" class="btn btn_right" id="heater">Activated</button>
+	</div><br>
+	<div>
+		Pump Mode:
+		<button type="button" class="btn btn_right" id="pump_mode">Activated</button>
+	</div><br>
+	<div>
+		Pump Satus:
+		<button type="button" class="btn btn_right" id="pump_status">Activated</button>
+	</div><br>
+	
+	<div>
+                Pump Power:
+                <button type="button" class="btn btn_right" id="pump_power">Activated</button>
+        </div><br>
+
+	
+	<div>
+		Lower Valve Status:
+		<button type="button" class="btn btn_right" id="lower_valve_status">Activated</button>		
+	</div><br>
+
+	<div>
+		Lower Valve Flowrate:
+		<button type="button" class="btn btn_right" id="lower_valve_flowrate">Activated</button>
+	</div><br>
+	
+        <div>
+                Filter:
+                <button type="button" class="btn btn_right" id="filter">Activated</button>
+        </div><br>
+        <div>
+                Inflow:
+                <button type="button" class="btn btn_right" id="inflow">Activated</button>
+	</div><br>
+	
+	<div>
+                Warning Code:
+                <button type="button" class="btn btn_right" id="warning">Activated</button>
+        </div><br>
+
+	<div>
+		Error Code:
+		<button type="button" class="btn btn_right" id="error">Activated</button>
+	</div><br>
+	</div>
+  </div>
+ </body>
+</html> 

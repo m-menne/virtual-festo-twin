@@ -1,0 +1,79 @@
+/*
+ * Empty C++ Application
+ */
+#include <cstdlib>
+
+#include "digital_out.h"
+#include "digital_in.h"
+#include "analog_out.h"
+#include "analog_in.h"
+
+
+void memory_update(uint32_t &digital_in_a, uint32_t* analog_in_a, uint32_t &digital_out_a, uint32_t* analog_out_a, uint32_t analog_out_status_a){
+
+	uint32_t* bram_ptr = ((uint32_t*)(0x42000000));
+	uint32_t* extra_ptr = ((uint32_t*)(0x42000400));
+
+	uint32_t analog_in_start = 0x200;
+	uint32_t digital_out_start = 512;
+	uint32_t analog_out_start = 0x600;
+	uint32_t analog_out_status_pos = 0x700;
+
+	// Write measured data from the board into the memory of the OS
+	*bram_ptr = digital_in_a;
+
+	for(int index = 0; index < 8; ++index){
+		bram_ptr[index+analog_in_start] = analog_in_a[index];
+	}
+
+	// Write data from the memory of the OS into the output arrays
+	digital_out_a = *extra_ptr;
+
+	for(int index = 0; index < 4; ++index){
+		analog_out_a[index] = bram_ptr[index+analog_out_start];
+	}
+
+	analog_out_status_a = bram_ptr[analog_out_status_pos];
+}
+
+int main() {
+
+	init_digital_outputs();
+	init_digital_inputs();
+	init_analog_outputs();
+	init_analog_inputs();
+
+	//uint32_t temp = 0;
+
+	// Richtige Array-Größen?
+	uint32_t digital_in = 0;
+	uint32_t analog_in[8] = { 0 };
+	uint32_t digital_out = 0;
+	uint32_t analog_out[4] = { 0 };
+	uint32_t analog_out_status = 0;
+
+
+	while(true) {
+
+		// Read Data
+		digital_in = read_data();
+		read_analog_inputs(analog_in);
+
+		// Update data
+		memory_update(digital_in, analog_in, digital_out, analog_out, analog_out_status);
+
+		// Write Data
+		write_digital_outputs(digital_out);
+		//if(analog_out_status){
+		if(1){
+			write_analog_outputs(analog_out);
+			uint32_t* analog_out_status = ((uint32_t*)(0x42000700)); // Adresse anpassen
+			*analog_out_status = 0;
+		}
+
+		// Wartezyklus
+	}
+
+	return EXIT_SUCCESS;
+}
+

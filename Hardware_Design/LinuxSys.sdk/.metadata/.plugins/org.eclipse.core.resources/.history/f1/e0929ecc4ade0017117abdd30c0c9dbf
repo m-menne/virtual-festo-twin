@@ -1,0 +1,17 @@
+/*
+ * analog_out.h
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: tux
+ */
+
+#ifndef SRC_ANALOG_OUT_H_
+#define SRC_ANALOG_OUT_H_
+
+int init_digital_outputs();
+
+int write_digital_outputs();
+
+
+
+#endif /* SRC_ANALOG_OUT_H_ */

@@ -1,0 +1,26 @@
+/*
+ * digital_in.cpp
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: tux
+ */
+
+#include "digital_in.h"
+
+void init_digital_inputs()
+{
+	volatile uint32_t *PMOD_B_DIR = PMOD_B_BASE + 1;
+	volatile uint32_t *PMOD_C_DIR = PMOD_C_BASE + 1;
+
+	// Set PMOD_B and C to output mode
+	*PMOD_B_DIR = 0x00000000;
+	*PMOD_C_DIR = 0x00000000;
+}
+
+
+void read_digital_inputs()
+{
+
+}
+
+

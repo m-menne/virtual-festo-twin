@@ -1,0 +1,51 @@
+{
+   guistr: "# # String gsaved with Nlview 6.6.8  2016-12-21 bk=1.3817 VDI=40 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port s_axi_aclk -pg 1 -y 770 -defaultsOSRD
+preplace port S_AXI3 -pg 1 -y 190 -defaultsOSRD
+preplace port S_AXI4 -pg 1 -y 610 -defaultsOSRD
+preplace port S_AXI5 -pg 1 -y 750 -defaultsOSRD
+preplace port S_AXI6 -pg 1 -y 890 -defaultsOSRD
+preplace port S_AXI7 -pg 1 -y 1030 -defaultsOSRD
+preplace port S_AXI -pg 1 -y 330 -defaultsOSRD
+preplace port s_axi_aresetn -pg 1 -y 910 -defaultsOSRD
+preplace port S_AXI1 -pg 1 -y 470 -defaultsOSRD
+preplace port S_AXI2 -pg 1 -y 50 -defaultsOSRD
+preplace portBus gpio_io_i6 -pg 1 -y 980 -defaultsOSRD
+preplace portBus gpio_io_i7 -pg 1 -y 1120 -defaultsOSRD
+preplace portBus gpio_io_i0 -pg 1 -y 420 -defaultsOSRD
+preplace portBus gpio_io_i1 -pg 1 -y 560 -defaultsOSRD
+preplace portBus gpio_io_i2 -pg 1 -y 140 -defaultsOSRD
+preplace portBus gpio_io_i3 -pg 1 -y 700 -defaultsOSRD
+preplace portBus gpio_io_i4 -pg 1 -y 280 -defaultsOSRD
+preplace portBus gpio_io_i5 -pg 1 -y 840 -defaultsOSRD
+preplace inst axi_gpio_in1 -pg 1 -lvl 1 -y 350 -defaultsOSRD
+preplace inst axi_gpio_in2 -pg 1 -lvl 1 -y 490 -defaultsOSRD
+preplace inst axi_gpio_in3 -pg 1 -lvl 1 -y 70 -defaultsOSRD
+preplace inst axi_gpio_in4 -pg 1 -lvl 1 -y 630 -defaultsOSRD
+preplace inst axi_gpio_in5 -pg 1 -lvl 1 -y 210 -defaultsOSRD
+preplace inst axi_gpio_in6 -pg 1 -lvl 1 -y 770 -defaultsOSRD
+preplace inst axi_gpio_in7 -pg 1 -lvl 1 -y 910 -defaultsOSRD
+preplace inst axi_gpio_in8 -pg 1 -lvl 1 -y 1050 -defaultsOSRD
+preplace netloc Conn1 1 0 1 NJ
+preplace netloc gpio_io_i6_1 1 0 2 NJ 980 310
+preplace netloc Conn2 1 0 1 NJ
+preplace netloc gpio_io_i5_1 1 0 2 NJ 840 310
+preplace netloc Conn3 1 0 1 NJ
+preplace netloc gpio_io_i3_1 1 0 2 NJ 700 310
+preplace netloc gpio_io_i2_1 1 0 2 NJ 140 310
+preplace netloc Conn4 1 0 1 NJ
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 0 1 20
+preplace netloc Conn5 1 0 1 NJ
+preplace netloc gpio_io_i7_1 1 0 2 NJ 1120 310
+preplace netloc gpio_io_i_1 1 0 2 NJ 420 310
+preplace netloc Conn6 1 0 1 NJ
+preplace netloc Conn7 1 0 1 NJ
+preplace netloc ps7_0_axi_periph_M01_AXI 1 0 1 NJ
+preplace netloc gpio_io_i1_1 1 0 2 NJ 560 310
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 1 30
+preplace netloc gpio_io_i4_1 1 0 2 NJ 280 310
+levelinfo -pg 1 0 170 330 -top 0 -bot 1140
+",
+}
+0

@@ -1,0 +1,103 @@
+/*
+ * Empty C++ Application
+ */
+#include <cstdlib>
+
+#include "digital_out.h"
+#include "digital_in.h"
+#include "analog_out.h"
+#include "analog_in.h"
+
+int main() {
+
+	init_digital_outputs();
+
+	for(;;) {
+		write_digital_outputs(0x000000FF);
+		for (uint32_t idx = 0; idx < UINT32_MAX; ++idx);
+		write_digital_outputs(0x00000000);
+	}
+
+	return EXIT_SUCCESS;
+}
+
+int test() {
+	volatile uint32_t *PMOD_A_DATA = PMOD_A_BASE;
+	volatile uint32_t *PMOD_B_DATA = PMOD_B_BASE;
+	volatile uint32_t *PMOD_C_DATA = PMOD_C_BASE;
+	volatile uint32_t *PMOD_D_DATA = PMOD_D_BASE;
+
+	volatile uint32_t *PMOD_A_DIR = PMOD_A_BASE + 1;
+	volatile uint32_t *PMOD_B_DIR = PMOD_B_BASE + 1;
+	volatile uint32_t *PMOD_C_DIR = PMOD_C_BASE + 1;
+	volatile uint32_t *PMOD_D_DIR = PMOD_D_BASE + 1;
+
+	*PMOD_A_DIR = 0x00000000;
+	*PMOD_B_DIR = 0x00000000;
+	*PMOD_C_DIR = 0x00000000;
+	*PMOD_D_DIR = 0x00000000;
+
+	*PMOD_A_DATA = 0x00000000;
+	*PMOD_B_DATA = 0x00000000;
+	*PMOD_C_DATA = 0x00000000;
+	*PMOD_D_DATA = 0x00000000;
+}
+
+/*
+int petaluma()
+{
+	uint32_t *MAXIM_CS = (uint32_t*)0x40020000;
+	uint32_t *MAXIM_RD = (uint32_t*)0x40020008;
+	uint32_t *MAXIM_SHDN = (uint32_t*)0x40010000;
+	uint32_t *MAXIM_CONVST = (uint32_t*)0x40010008;
+	uint32_t *MAXIM_WR = (uint32_t*)0x40030000;
+	uint32_t *MAXIM_EOC = (uint32_t*)0x40030008;
+	int *MAXIM_DATA = (int*)0x40000000;
+
+	int *bram_ptr = (int*)0x42000000;
+	//int bram_size = 0x42001fff - (int)bram_ptr;
+	*bram_ptr = 0;
+
+	*MAXIM_CS = 1;
+	*MAXIM_RD = 1;
+	*MAXIM_WR = 1;
+
+	*MAXIM_DATA = 0x8;
+
+	*MAXIM_CS = 0;
+	*MAXIM_WR = 0;
+	*MAXIM_WR = 1;
+	*MAXIM_CS = 1;
+
+	*MAXIM_CONVST = 1;
+
+	for(;;)
+	{
+		*MAXIM_CONVST = 1;
+
+		//while(*MAXIM_EOC);
+
+		*MAXIM_CONVST = 0;
+		*MAXIM_CS = 0;
+
+		//while(*bram_ptr == 2);
+
+		//*bram_ptr = 0;
+
+		for(uint32_t ChId = 0; ChId < 8; ++ChId){
+			*MAXIM_RD = 0;
+			//bram_ptr[ChId+1] = *MAXIM_DATA;
+			bram_ptr[ChId+1] += 1;
+			*MAXIM_RD = 1;
+		}
+
+		//*bram_ptr = 1;
+
+		*MAXIM_CS = 1;
+
+		for(int idx = 0; idx < 50000; ++idx);
+		//(*bram_ptr)++;
+	}
+
+	return 0;
+}*/

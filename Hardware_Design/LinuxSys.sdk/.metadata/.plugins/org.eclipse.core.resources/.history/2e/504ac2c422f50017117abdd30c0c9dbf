@@ -1,0 +1,23 @@
+/*
+ * digital_in.h
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: tux
+ */
+
+#ifndef SRC_DIGITAL_IN_H_
+#define SRC_DIGITAL_IN_H_
+
+#include "io_defs.h"
+
+#define nCS 0x10
+#define ALE 0x20
+#define nWR 0x40
+#define nRD 0x80
+
+void init_digital_inputs();
+uint32_t read_digital_inputs(uint32_t reg);
+void write_digital_inputs(uint32_t reg, uint32_t reg_data);
+uint32_t read_data();
+
+#endif /* SRC_DIGITAL_IN_H_ */

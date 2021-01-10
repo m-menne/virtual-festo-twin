@@ -1,0 +1,13 @@
+// Mem file initialization records.
+//
+// SW Build 1846317 on Fri Apr 14 18:54:47 MDT 2017
+// Vivado v2017.1 (64-bit)
+// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+// Created on Thursday December 07, 2017 - 03:24:32 pm, from:
+//
+//     Map file     - /home/tux/projects/HoloLensRUB/LinuxSys/LinuxSys.srcs/sources_1/bd/design_1/design_1.bmm
+//     Data file(s) - /home/tux/projects/HoloLensRUB/LinuxSys/LinuxSys.srcs/sources_1/bd/design_1/ip/design_1_microblaze_0_0/data/mb_bootloop_le.elf
+//
+// Address space 'design_1_i_processing_system7_0.design_1_i_global_mem_blk_mem_gen_0_8K_7_ADDR_SPACE', bit lane [31:0].
+//
+// Bus width = 32 bits, number of bus blocks = 1.

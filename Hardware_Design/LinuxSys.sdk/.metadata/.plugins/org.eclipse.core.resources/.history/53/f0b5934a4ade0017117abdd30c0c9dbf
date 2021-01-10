@@ -1,0 +1,11 @@
+#ifndef IO_DEFS
+#define IO_DEFS
+
+#define PMOD_A_BASE ((uint32_t*)(0x40040000))
+#define PMOD_B_BASE ((uint32_t*)(0x40050000))
+#define PMOD_C_BASE ((uint32_t*)(0x40060000))
+#define PMOD_D_BASE ((uint32_t*)(0x40070000))
+
+
+
+#endif // IO_DEFS

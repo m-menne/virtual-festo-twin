@@ -1,0 +1,83 @@
+/*
+ * digital_in.cpp
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: tux
+ */
+
+#include "digital_in.h"
+
+void init_digital_inputs()
+{
+	volatile uint32_t *data_dir = PMOD_B_BASE + 1;
+	volatile uint32_t *ctrl_dir = PMOD_C_BASE + 1;
+
+	volatile uint32_t *ctrl = PMOD_C_BASE;
+
+	// Set PMOD_B to input mode
+	*data_dir = 0x000000ff;
+	// Set PMOD_C to output mode
+	*ctrl_dir = 0x00000000;
+
+	*ctrl = nCS | nWR | nRD;
+}
+
+
+uint32_t read_digital_inputs(uint32_t reg)
+{
+	volatile uint32_t *data = PMOD_B_BASE;
+	volatile uint32_t *ctrl = PMOD_C_BASE;
+	volatile uint32_t *data_dir = PMOD_B_BASE + 1;
+
+	uint32_t reg_data;
+
+	*ctrl &= ~nCS;
+	*ctrl |= ALE;
+	*data_dir = 0x00;
+	*data = reg;
+	*ctrl &= ~ALE;
+	*data_dir = 0xff;
+	*ctrl &= ~nRD;
+	reg_data = *data;
+	*ctrl |= nRD;
+	*ctrl |= nCS;
+
+	return reg_data;
+}
+
+
+void write_digital_inputs (uint32_t reg, uint32_t reg_data)
+{
+	volatile uint32_t *data = PMOD_B_BASE;
+	volatile uint32_t *ctrl = PMOD_C_BASE;
+	volatile uint32_t *data_dir = PMOD_B_BASE + 1;
+
+	*ctrl &= ~nCS;
+	*ctrl |= ALE;
+	*data_dir = 0x00;
+	*data = reg;
+	*ctrl &= ~ALE;
+	*ctrl &= ~nWR;
+	*data = reg_data;
+	*ctrl |= nWR;
+	*data_dir = 0xff;
+	*ctrl |= nCS;
+}
+
+uint32_t read_data() {
+	//uint32_t DIAG;
+	uint32_t INPDATA;
+	//uint32_t GLERR;
+	//uint32_t INTERR;
+
+	//write_digital_inputs(0x98, 0x08);
+
+	//DIAG = read_digital_inputs(0x00);
+	INPDATA = read_digital_inputs(0x02);
+	//GLERR = read_digital_inputs(0x04);
+	//INTERR = read_digital_inputs(0x16);
+
+	return INPDATA;
+}
+
+

@@ -1,0 +1,68 @@
+/*
+ * analog_in.cpp
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: tux
+ */
+
+/*
+int petaluma()
+{
+	uint32_t *MAXIM_CS = (uint32_t*)0x40020000;
+	uint32_t *MAXIM_RD = (uint32_t*)0x40020008;
+	uint32_t *MAXIM_SHDN = (uint32_t*)0x40010000;
+	uint32_t *MAXIM_CONVST = (uint32_t*)0x40010008;
+	uint32_t *MAXIM_WR = (uint32_t*)0x40030000;
+	uint32_t *MAXIM_EOC = (uint32_t*)0x40030008;
+	int *MAXIM_DATA = (int*)0x40000000;
+
+	int *bram_ptr = (int*)0x42000000;
+	//int bram_size = 0x42001fff - (int)bram_ptr;
+	*bram_ptr = 0;
+
+	*MAXIM_CS = 1;
+	*MAXIM_RD = 1;
+	*MAXIM_WR = 1;
+
+	*MAXIM_DATA = 0x8;
+
+	*MAXIM_CS = 0;
+	*MAXIM_WR = 0;
+	*MAXIM_WR = 1;
+	*MAXIM_CS = 1;
+
+	*MAXIM_CONVST = 1;
+
+	for(;;)
+	{
+		*MAXIM_CONVST = 1;
+
+		//while(*MAXIM_EOC);
+
+		*MAXIM_CONVST = 0;
+		*MAXIM_CS = 0;
+
+		//while(*bram_ptr == 2);
+
+		//*bram_ptr = 0;
+
+		for(uint32_t ChId = 0; ChId < 8; ++ChId){
+			*MAXIM_RD = 0;
+			//bram_ptr[ChId+1] = *MAXIM_DATA;
+			bram_ptr[ChId+1] += 1;
+			*MAXIM_RD = 1;
+		}
+
+		//*bram_ptr = 1;
+
+		*MAXIM_CS = 1;
+
+		for(int idx = 0; idx < 50000; ++idx);
+		//(*bram_ptr)++;
+	}
+
+	return 0;
+}*/
+
+
+

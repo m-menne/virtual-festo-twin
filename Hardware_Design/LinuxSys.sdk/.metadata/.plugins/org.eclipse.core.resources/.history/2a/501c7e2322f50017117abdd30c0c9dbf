@@ -1,0 +1,21 @@
+#ifndef IO_DEFS
+#define IO_DEFS
+
+#include <cstdint>
+
+#define PMOD_A_BASE ((uint32_t*)(0x40040000))
+#define PMOD_B_BASE ((uint32_t*)(0x40050000))
+#define PMOD_C_BASE ((uint32_t*)(0x40060000))
+#define PMOD_D_BASE ((uint32_t*)(0x40070000))
+
+// Analog Inputs
+#define MAXIM_CS_Adr ((uint32_t*)(0x40020000))
+#define MAXIM_RD_Adr ((uint32_t*)(0x40020008))
+#define MAXIM_SHDN_Adr ((uint32_t*)(0x40010000))
+#define MAXIM_CONVST_Adr ((uint32_t*)(0x40010008))
+#define MAXIM_WR_Adr ((uint32_t*)(0x40030000))
+#define MAXIM_EOC_Adr ((uint32_t*)(0x40030008))
+#define MAXIM_DATA_Adr ((int*)(0x40000000))
+
+
+#endif // IO_DEFS

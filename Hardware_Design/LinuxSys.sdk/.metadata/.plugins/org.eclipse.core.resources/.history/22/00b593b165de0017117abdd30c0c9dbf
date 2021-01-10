@@ -1,0 +1,91 @@
+/*
+ * analog_out.cpp
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: tux
+ */
+
+#include "analog_out.h"
+
+	volatile uint32_t *PMOD_D_DATA = PMOD_D_BASE;
+	volatile uint32_t *PMOD_D_DIR = PMOD_D_BASE + 1;
+
+void spi_rw(volatile uint32_t *port, uint8_t* pSPIWriteBuf, uint8_t* pSPIReadBuf, uint32_t nNumBytes, uint8_t nCS)
+{
+		/* set CS to low */
+		*port &= ~(1 << nCS);
+
+		for (uint32_t byte=0; byte<nNumBytes; byte++) {
+			  for (uint32_t bit=7; bit>= 0; bit--) {
+				/* MOSI-Bit is not getting 0 again, if once 1 !!! */
+			    *port &= ~(1 << SPI_MOSI_POS);
+			    *port |= (((pSPIWriteBuf[byte]>>bit)&1)<<SPI_MOSI_POS) | (1 << SPI_CLOCK_POS);
+			    *port &= ~(1 << SPI_CLOCK_POS);
+			    pSPIReadBuf[byte] <<= 1;
+			    pSPIReadBuf[byte] |= (*port >> SPI_MISO_POS) & 0x1;
+			  }
+
+		}
+		/* set CS to high */
+		*port |= (1 << nCS);
+
+}
+
+static void set_dac_channel(uint16_t value, uint8_t channel)
+{
+	uint8_t SPIWriteBuf[8];
+	uint8_t SPIReadBuf[8];
+
+	SPIWriteBuf[0] = 0x2D;
+	SPIWriteBuf[1] = 0x60;
+	SPIWriteBuf[2] = 0x2D;
+	SPIWriteBuf[3] = 0x60;
+	SPIWriteBuf[4] = 0x2D;
+	SPIWriteBuf[5] = 0x60;
+	SPIWriteBuf[6] = 0x2D;
+	SPIWriteBuf[7] = 0x60;
+
+	spi_rw(PMOD_D_DATA, SPIWriteBuf, SPIReadBuf, 8, SPI_CS1_POS);
+
+	SPIWriteBuf[1] = (value>>8) & 0xff;
+	SPIWriteBuf[2] = value & 0xff;
+
+	switch (channel) {
+	case 1:
+		SPIWriteBuf[0] = 0x31;
+		spi_rw(PMOD_D_DATA, SPIWriteBuf, SPIReadBuf, 3, SPI_CS2_POS);
+		break;
+	case 2:
+		SPIWriteBuf[0] = 0x32;
+		spi_rw(PMOD_D_DATA, SPIWriteBuf, SPIReadBuf, 3, SPI_CS2_POS);
+		break;
+	case 3:
+		SPIWriteBuf[0] = 0x34;
+		spi_rw(PMOD_D_DATA, SPIWriteBuf, SPIReadBuf, 3, SPI_CS2_POS);
+		break;
+	case 4:
+		SPIWriteBuf[0] = 0x38;
+		spi_rw(PMOD_D_DATA, SPIWriteBuf, SPIReadBuf, 3, SPI_CS2_POS);
+		break;
+	}
+}
+
+void init_analog_outputs() {
+	/* Set CS1, CS2, MOSI, CLOCK pins to output, MISO, INT pins to input */
+	*PMOD_D_DIR = (SPI_MISO_POS | SPI_INT_POS);
+
+	/* Set chip select CS1 and CS2 to high (inactive)*/
+	*PMOD_D_DATA = (SPI_CS1_POS | SPI_CS2_POS);
+}
+
+
+void write_analog_outputs(uint32_t* data) {
+	init_analog_outputs();
+	for(uint32_t i = 0; i < 4; i++)
+	{
+		set_dac_channel(data[i], i);
+	}
+
+}
+
+

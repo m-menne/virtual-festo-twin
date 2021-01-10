@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Festo Control</title>
+<link href="stylesheet.css" rel="stylesheet">
+<script>
+
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}	
+  
+</script>
+</head>
+<body>
+
+<div>
+
+<h1>Control the Festo Workstation</h1>
+
+
+<hr>
+<p>Control upper valve:
+	<br>
+	<button onclick="httpGet('/post_valveUpper.php?status=1')">Open upper valve</button> 
+        <button onclick="httpGet('/post_valveUpper.php?status=0')">Close upper valve</button>
+</p>
+
+<hr>
+<p>Control lower valve:
+        <br>
+        <button onclick="httpGet('/post_valveLower.php?status=1.0')">Open lower valve</button>
+        <button onclick="httpGet('/post_valveLower.php?status=0.0')">Close lower valve</button>
+</p>
+
+<hr>
+<p>Control pump:
+	<br>
+        <button onclick="httpGet('/post_pump.php?status=1&mode=0&power=0.0')">Pump on</button>
+        <button onclick="httpGet('/post_pump.php?status=0&mode=0&power=0.0')">Pump off</button>
+</p>
+
+<hr>
+<p>Control heater:
+        <br>
+        <button onclick="httpGet('/post_heater.php?status=1')">Heater on</button>
+        <button onclick="httpGet('/post_heater.php?status=0')">Heater off</button>
+</p>
+
+<hr>
+<p>Control filter:
+        <br>
+        <button onclick="httpGet('/post_filter.php?status=1')">Filter on</button>
+        <button onclick="httpGet('/post_filter.php?status=0')">Filter off</button>
+</p>
+
+<hr>
+<p>Control inflow:
+        <br>
+        <button onclick="httpGet('/post_inflow.php?status=1')">Inflow on</button>
+        <button onclick="httpGet('/post_inflow.php?status=0')">Inflow off</button>
+</p>
+
+<hr>
+<p>System control:
+        <br>
+        <button onclick="httpGet('/reboot.php')">Reboot system</button>
+        <button onclick="httpGet('/shutdown.php')">Shutdown system</button>
+</p>
+</div>
+
+
+</body>
+</html> 

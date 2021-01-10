@@ -1,0 +1,23 @@
+/*
+ * analog_out.h
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: tux
+ */
+
+#ifndef SRC_ANALOG_OUT_H_
+#define SRC_ANALOG_OUT_H_
+
+#include "io_defs.h"
+
+#define SPI_CS1_POS 	0x01
+#define SPI_MOSI_POS 	0x02
+#define SPI_MISO_POS	0x04
+#define SPI_CLOCK_POS	0x08
+#define SPI_INT_POS		0x10
+#define SPI_CS2_POS		0x20
+
+void init_analog_outputs();
+void write_analog_outputs(uint32_t* data);
+
+#endif /* SRC_ANALOG_OUT_H_ */

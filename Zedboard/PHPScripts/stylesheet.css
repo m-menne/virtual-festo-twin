@@ -1,0 +1,56 @@
+div {
+	width: 1200px;
+	font-family: Arial;
+}
+
+div#main {
+	margin-left: 1em;
+}
+
+.part_left {
+	width: 45%;
+	float: left;
+}
+
+.part_right {
+	width: 45%;
+	float: right;
+}
+
+
+button {
+	width: 200px;
+}
+
+.myProgress {
+  	width: 45%;
+  	background-color: #eee;
+}
+
+.myBar {
+  	width: 10%;
+  	height: 30px;
+  	background-color: #003560;
+  	text-align: center;
+  	line-height: 30px;
+  	color: white;
+}
+
+div#saturation_prog {
+  	width: 200px;
+	position: absolute;
+	left: 18.5%;
+	display: inline-block;
+}
+
+.btn_left {
+	position: absolute;
+	left: 18.5%;
+}
+
+.btn_right {
+	position: absolute;
+	left: 52.8%;
+}
+
+

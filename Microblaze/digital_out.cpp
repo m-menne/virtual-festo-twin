@@ -1,0 +1,17 @@
+#include "digital_out.h"
+
+// Function to initialize the digital output board
+void init_digital_outputs() {
+	volatile uint32_t *PMOD_A_DIR = PMOD_A_BASE + 1;
+
+	// Set PMOD_A to output mode
+	*PMOD_A_DIR = 0x00000000;
+}
+
+// Function to write the given data to the output board
+// data 		- Word that contains the digital output
+void write_digital_outputs(uint32_t data) {
+	volatile uint32_t *PMOD_A_DATA = PMOD_A_BASE;
+
+	*PMOD_A_DATA = data;
+}

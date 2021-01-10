@@ -1,0 +1,54 @@
+{
+   guistr: "# # String gsaved with Nlview 6.6.8  2016-12-21 bk=1.3817 VDI=40 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -y 1370 -defaultsOSRD
+preplace port gpio_pmod_ja -pg 1 -y 1840 -defaultsOSRD
+preplace port gpio_pmod_jb -pg 1 -y 1820 -defaultsOSRD
+preplace port gpio_pmod_jc -pg 1 -y 1800 -defaultsOSRD
+preplace port gpio_pmod_jd -pg 1 -y 1780 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -y 1390 -defaultsOSRD
+preplace portBus axi_max11046_0_DB16_CR4 -pg 1 -y 1940 -defaultsOSRD
+preplace portBus axi_max11046_0_CS_B_pin -pg 1 -y 1960 -defaultsOSRD
+preplace portBus axi_max11046_0_CONVST_pin -pg 1 -y 1940 -defaultsOSRD
+preplace portBus axi_max11046_0_EOC_B_pin -pg 1 -y 1960 -defaultsOSRD
+preplace portBus axi_max11046_0_WR_B_pin -pg 1 -y 2000 -defaultsOSRD
+preplace portBus axi_max11046_0_RD_B_pin -pg 1 -y 1980 -defaultsOSRD
+preplace portBus axi_max11046_0_SHDN_pin -pg 1 -y 1920 -defaultsOSRD
+preplace portBus gpio_io_i_7 -pg 1 -y -280 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -y 1210 -defaultsOSRD
+preplace inst global_mem -pg 1 -lvl 4 -y 1740 -defaultsOSRD
+preplace inst mb0 -pg 1 -lvl 3 -y 1900 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 4 -y 1530 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 3 -y 1450 -defaultsOSRD
+preplace netloc processing_system7_0_DDR 1 3 7 NJ 1370 NJ 1370 NJ 1370 NJ 1370 NJ 1370 NJ 1370 NJ
+preplace netloc mb0_GPIO 1 3 7 930J 1850 1430J 1780 NJ 1780 NJ 1780 NJ 1780 NJ 1780 NJ
+preplace netloc mb0_M05_AXI 1 3 1 970
+preplace netloc gpio2_io_i_1 1 0 3 NJ 1960 NJ 1960 NJ
+preplace netloc rst_ps7_0_100M_mb_reset 1 2 3 430 2060 NJ 2060 1420
+preplace netloc mb0_gpio_io_o1 1 3 7 N 1960 NJ 1960 NJ 1960 NJ 1960 NJ 1960 NJ 1960 NJ
+preplace netloc rst_ps7_0_100M_bus_struct_reset 1 2 3 420 1620 NJ 1620 1410
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 3 60 1580 NJ 1580 930
+preplace netloc mb0_gpio_io_o2 1 3 7 N 2000 NJ 2000 NJ 2000 NJ 2000 NJ 2000 NJ 2000 NJ
+preplace netloc mb0_gpio2_io_o1 1 3 7 N 1980 NJ 1980 NJ 1980 NJ 1980 NJ 1980 NJ 1980 NJ
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 4 90 1340 390 2050 980 1870 1390
+preplace netloc microblaze_0_Clk 1 1 3 80 1330 400 1590 950
+preplace netloc mb0_gpio_io_o 1 3 7 N 1920 NJ 1920 NJ 1920 NJ 1920 NJ 1920 NJ 1920 NJ
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 3 1 960
+preplace netloc mb0_GPIO1 1 3 7 NJ 1840 1440J 1800 NJ 1800 NJ 1800 NJ 1800 NJ 1800 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 3 7 NJ 1390 NJ 1390 NJ 1390 NJ 1390 NJ 1390 NJ 1390 NJ
+preplace netloc S00_AXI_1 1 2 2 NJ 1210 970
+preplace netloc mb0_GPIO2 1 3 7 NJ 1860 1450J 1820 NJ 1820 NJ 1820 NJ 1820 NJ 1820 NJ
+preplace netloc mb0_GPIO3 1 3 7 NJ 1880 1460J 1840 NJ 1840 NJ 1840 NJ 1840 NJ 1840 NJ
+preplace netloc mb0_gpio2_io_o 1 3 7 N 1940 NJ 1940 NJ 1940 NJ 1940 NJ 1940 NJ 1940 NJ
+preplace netloc gpio_io_i_8 1 0 3 NJ 1940 NJ 1940 NJ
+preplace netloc mdm_1_debug_sys_rst 1 3 1 940
+preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 1 4 70 1740 410 1740 980 1630 1400
+levelinfo -pg 1 0 40 240 680 1210 1480 1530 1580 1630 1680 1720 -top -300 -bot 2460
+",
+}
+{
+   da_axi4_cnt: "37",
+   da_board_cnt: "17",
+   da_mb_cnt: "1",
+   da_ps7_cnt: "1",
+}

@@ -1,0 +1,17 @@
+/*
+ * digital_in.h
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: tux
+ */
+
+#ifndef SRC_DIGITAL_IN_H_
+#define SRC_DIGITAL_IN_H_
+
+#include "io_defs.h"
+
+void init_digital_inputs();
+void read_digital_inputs();
+
+
+#endif /* SRC_DIGITAL_IN_H_ */

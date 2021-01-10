@@ -1,0 +1,6 @@
+17:14:14 **** Incremental Build of configuration Debug for project io_ctrl ****
+make all 
+make: Nothing to be done for 'all'.
+
+17:14:14 Build Finished (took 148ms)
+

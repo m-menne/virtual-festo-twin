@@ -1,0 +1,22 @@
+/*
+ * digital_in.cpp
+ *
+ *  Created on: Dec 11, 2017
+ *      Author: tux
+ */
+
+#include "digital_in.h"
+
+// Function ti in
+void init_digital_inputs()
+{
+
+}
+
+
+void read_digital_inputs()
+{
+
+}
+
+
