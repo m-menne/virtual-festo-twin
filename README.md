@@ -8,7 +8,7 @@ This project realizes the remote control of an industrial plant, the [Festo Work
 Developed by Caner Kazanci, Jan Knittel, Paul Knopp and Max Menne at the chair of [Embedded Systems for Information Technology, Ruhr-University Bochum](https://www.esit.ruhr-uni-bochum.de/) in coorperation with [Avnet Silica](https://www.avnet.com/wps/portal/silica/) and [Microsoft](https://www.microsoft.com/).
 
 #### Exhibitions
-This project was exhibited and presented at the [embedded world](https://www.embedded-world.de) 2018 as well as the [CDNLive 2018](https://www.cadence.com/en_US/home/cdnlive/emea-2018/proceedings.html), among several other events.
+This project was exhibited and presented at the [embedded world](https://www.embedded-world.de) 2018 as well as the [CDNLive 2018](https://www.cadence.com/en_US/home/cdnlive/emea-2018/proceedings.html), among several other events. A short review of this project by Frank Schirrmeister (Cadence) can be found [here](https://semiengineering.com/embedded-world-2018-security-safety-and-digital-twins/).
 
 #### Structure of the repository
 The code of the project contained in this repository is organized in the following folders:
